@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Traveling - Travel The World</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+        }
+        header {
+            height: 70px;
+            width: 100%;
+            background: rgba(116, 0, 78, 0.88);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f5a623;
+            border-radius: 50%;
+            margin-right: 7px;
+            position: relative;
+        }
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-left: 2px solid #f5a623;
+            border-bottom: 2px solid #f5a623;
+            transform: rotate(-45deg);
+            bottom: -7px;
+            left: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .search-icon {
+            color: white;
+            font-size: 20px;
+        }
+        .hero {
+            height: 405px;
+            background:
+                linear-gradient(rgba(91, 0, 70, 0.38),
+                rgba(91, 0, 70, 0.38)),
+                url("https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-title {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .hero-title h1 {
+            font-size: 60px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .hero-title h2 {
+            font-family: cursive;
+            font-size: 52px;
+            margin-top: -10px;
+        }
+
+        .discover-btn {
+            margin-top: 30px;
+            border: none;
+            padding: 15px 27px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #ffad25, #9b45e8);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .discover-btn:hover {
+            transform: scale(1.05);
+        }
+        .arrow {
+            position: absolute;
+            top: 140px;
+            width: 28px;
+            height: 28px;
+            border: 1px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .left-arrow {
+            left: 25px;
+        }
+
+        .right-arrow {
+            right: 25px;
+        }
+        .categories {
+            position: absolute;
+            bottom: 0;
+            left: 6%;
+            width: 87%;
+            height: 52px;
+            background: #dff9f4;
+            border-radius: 35px 35px 0 0;
+            display: flex;
+            overflow: hidden;
+        }
+        .category {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 11px;
+            color: #555;
+            font-weight: bold;
+        }
+        .category:first-child {
+            background: #ffad19;
+            color: white;
+        }
+        .category-icon {
+            font-size: 18px;
+        }
+        .search-box {
+            min-height: 102px;
+            background: linear-gradient(
+                90deg,
+                #ffad22,
+                #ee7290,
+                #8b48ff
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px 40px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field label {
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .field input,
+        .field select {
+            height: 26px;
+            border: none;
+            outline: none;
+            background: white;
+            padding: 5px 10px;
+            width: 90px;
+            font-size: 10px;
+            color: #777;
+        }
+
+        .destination input {
+            width: 180px;
+        }
+
+        .search-btn {
+            margin-top: 17px;
+            height: 28px;
+            width: 90px;
+            border: none;
+            border-radius: 20px;
+            background: #351052;
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #220833;
+        }
+        @media (max-width: 768px) {
+
+            header {
+                padding: 0 15px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero-title h1 {
+                font-size: 42px;
+            }
+
+            .hero-title h2 {
+                font-size: 38px;
+            }
+
+            .categories {
+                width: 100%;
+                left: 0;
+                overflow-x: auto;
+            }
+
+            .category {
+                min-width: 110px;
+            }
+
+            .search-box {
+                flex-wrap: wrap;
+                padding: 20px;
+            }
+
+            .destination input {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <div class="logo">
+            <span class="logo-icon"></span>
+            TRAVELING
+        </div>
+
+        <nav>
+            <a href="#">HOME</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">OFFERS</a>
+            <a href="#">NEWS</a>
+            <a href="#">CONTACT</a>
+        </nav>
+
+        <div class="search-icon">⌕</div>
+
+    </header>
+    <section class="hero">
+
+        <div class="arrow left-arrow">
+            ‹
+        </div>
+
+        <div class="arrow right-arrow">
+            ›
+        </div>
+
+        <div class="hero-title">
+            <h1>TRAVEL</h1>
+            <h2>the world</h2>
+
+            <button class="discover-btn">
+                DISCOVER NOW &nbsp; •••
+            </button>
+        </div>
+        <div class="categories">
+
+            <div class="category">
+                <span class="category-icon">🏨</span>
+                HOTELS
+            </div>
+
+            <div class="category">
+                <span class="category-icon">🚗</span>
+                CAR RENTALS
+            </div>
+
+            <div class="category">
+                <span class="category-icon">✈</span>
+                FLIGHTS
+            </div>
+
+            <div class="category">
+                <span class="category-icon">♧</span>
+                TRIPS
+            </div>
+
+            <div class="category">
+                <span class="category-icon">🚢</span>
+                CRUISES
+            </div>
+
+            <div class="category">
+                <span class="category-icon">⚽</span>
+                ACTIVITIES
+            </div>
+        </div>
+    </section>
+    <section class="search-box">
+        <div class="field destination">
+            <label>DESTINATION</label>
+            <input type="text">
+        </div>
+        <div class="field">
+            <label>CHECK IN</label>
+            <input type="text" placeholder="YYYY-MM-DD">
+        </div>
+        <div class="field">
+            <label>CHECK OUT</label>
+            <input type="text" placeholder="YYYY-MM-DD">
+        </div>
+        <div class="field">
+            <label>ADULTS</label>
+            <select>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>CHILDREN</label>
+            <select>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </div>
+        <button class="search-btn">
+            SEARCH &nbsp;•••
+        </button>
+    </section>
+</body>
+</html>
